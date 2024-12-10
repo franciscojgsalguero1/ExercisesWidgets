@@ -48,7 +48,7 @@ public class LinearLayoutActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.buttonBackToMenu).setOnClickListener(view -> {
-            Intent intent = new Intent(LinearLayoutActivity.this, MenuActivity.class);
+            Intent intent = new Intent(LinearLayoutActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish(); // Opcional, para cerrar la actividad actual

@@ -2,7 +2,6 @@ package practica.pruebas.exerciseswidgets5;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +24,7 @@ public class RadioGroupActivity extends AppCompatActivity implements RadioGroup.
 
         // botón para volver al menú
         findViewById(R.id.buttonBackToMenu).setOnClickListener(view -> {
-            Intent intent = new Intent(RadioGroupActivity.this, MenuActivity.class);
+            Intent intent = new Intent(RadioGroupActivity.this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish(); // Opcional, para cerrar la actividad actual
