@@ -1,50 +1,58 @@
 package practica.pruebas.exerciseswidgets5;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.text.TextWatcher;
-import android.widget.LinearLayout;
-import android.widget.RadioGroup;
-import android.widget.EditText;
-public class LinearLayoutActivity extends Activity
-        implements RadioGroup.OnCheckedChangeListener {
-    RadioGroup orientation;
-    RadioGroup gravity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class LinearLayoutActivity extends AppCompatActivity {
 
     @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
-        setContentView(R.layout.activity_main);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_linear_layout);
 
-        orientation=(RadioGroup)findViewById(R.id.orientation);
-        orientation.setOnCheckedChangeListener(this);
-        gravity=(RadioGroup)findViewById(R.id.gravity);
-        gravity.setOnCheckedChangeListener(this);
-    }
+        Button buttonOne = findViewById(R.id.button_one);
+        Button buttonTwo = findViewById(R.id.button_two);
+        Button buttonThree = findViewById(R.id.button_three);
+        TextView message = (TextView) findViewById(R.id.changeText);
+        message.setText("Welcome to LinearLayout Activity");
 
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId) {
-            case R.id.horizontal:
-                orientation.setOrientation(LinearLayout.HORIZONTAL);
-                break;
+        buttonOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // añadimos el texto al TextView
+                message.setText("Button One clicked");
+                // mostramos un mensaje en el Toast
+                Toast.makeText(LinearLayoutActivity.this, "Button One Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-            case R.id.vertical:
-                orientation.setOrientation(LinearLayout.VERTICAL);
-                break;
+        buttonTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                message.setText("Button Two clicked");
+                Toast.makeText(LinearLayoutActivity.this, "Button Two Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-            case R.id.left:
-                gravity.setGravity(Gravity.LEFT);
-                break;
+        buttonThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                message.setText("Button Three clicked");
+                Toast.makeText(LinearLayoutActivity.this, "Button Three Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-            case R.id.center:
-                gravity.setGravity(Gravity.CENTER_HORIZONTAL);
-                break;
+        findViewById(R.id.buttonBackToMenu).setOnClickListener(view -> {
+            Intent intent = new Intent(LinearLayoutActivity.this, MenuActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish(); // Opcional, para cerrar la actividad actual
+        });
 
-            case R.id.right:
-                gravity.setGravity(Gravity.RIGHT);
-                break;
-        }
     }
 }
-
